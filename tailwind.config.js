@@ -1,7 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
-  darkMode: 'class',
   theme: {
     fontSize: {
       xs: ['0.75rem', { lineHeight: '1rem' }],
@@ -18,6 +17,19 @@ module.exports = {
       '8xl': ['6rem', { lineHeight: '1' }],
       '9xl': ['8rem', { lineHeight: '1' }],
     },
+    extend: {
+      colors: {
+        brand: {
+          dark: '#0a0a0a',
+          amber: '#FF5D46',
+          mustard: '#FDAE40',
+        },
+      },
+      borderColor: {
+        DEFAULT: '#464646',
+      },
+    },
   },
-  plugins: [],
+  // eslint-disable-next-line import/no-extraneous-dependencies, global-require
+  plugins: [require('@tailwindcss/forms')],
 };
