@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: 'smooth'
+  }
+
+  /* ::selection {
+    @apply bg-fuchsia-300/20 text-fuchsia-500;
+  }
+
+  ::-webkit-scrollbar {
+    @apply w-[7px] h-[5px];
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-fuchsia-400 transition-all duration-300 rounded-b-lg;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: 0 0;
+  } */
+}
