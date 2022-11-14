@@ -24,12 +24,14 @@ const buttonStyles = cva(
 );
 
 export interface ButtonProps extends VariantProps<typeof buttonStyles> {
-  text: string;
+  children: React.ReactNode;
 }
 
-const Button = ({ intent, fullWidth, text }: ButtonProps) => {
+const Button = ({ intent, fullWidth, children, ...props }: ButtonProps) => {
   return (
-    <button className={buttonStyles({ intent, fullWidth })}>{text}</button>
+    <button className={buttonStyles({ intent, fullWidth })} {...props}>
+      {children}
+    </button>
   );
 };
 

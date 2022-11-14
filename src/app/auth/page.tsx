@@ -5,18 +5,12 @@ import Input from '@/components/shared/Input';
 
 const authPage = () => {
   return (
-    <div className="formShadow sm:w-full flex flex-col space-y-3 md:w-96 mt-[40vh] p-4">
-      <label htmlFor="email" className="text-xl font-semibold">
-        Enter email to continue
-      </label>
-      <Input
-        type="email"
-        name="email"
-        placeholder="Enter Email"
-        disabled={false}
-        classes="bg-[#101010]"
-      />
-      <Button intent="primary" fullWidth text="Continue" />
+    <div className="formShadow flex flex-col space-y-3 p-3 w-full md:w-96">
+      <label htmlFor="email">Enter email to continue</label>
+      <Input name="email" type="email" placeholder="Enter email" />
+      <Button fullWidth intent="primary">
+        Continue
+      </Button>
     </div>
   );
 };
