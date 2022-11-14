@@ -8,7 +8,7 @@ import { gasOptions, ownersChains } from '@/data/mockData';
 const nftDetails = () => {
   return (
     <>
-      <div className="formShadow p-4 w-full my-12">
+      <div className="formShadow p-4 w-full">
         <div>
           <h3 className="text-xl leading-6 font-bold">Provider Details</h3>
           <p className="mt-1 text-sm text-gray-500">
