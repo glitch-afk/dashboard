@@ -20,10 +20,7 @@ import { useBreakpoint } from '@/lib/hooks/use-breakpoint';
 
 function CustomAxis({ x, y, payload }: any) {
   return (
-    <g
-      transform={`translate(${x},${y})`}
-      className="text-sm text-gray-500 dark:text-gray-400"
-    >
+    <g transform={`translate(${x},${y})`} className="text-sm text-zinc-600">
       <text x={0} y={0} dy={25} textAnchor="middle" fill="currentColor">
         {payload.value}
       </text>
@@ -115,7 +112,7 @@ const OverviewChart = () => {
             height={400}
             margin={{
               top: 20,
-              bottom: 5,
+              bottom: 20,
             }}
             onMouseMove={(data) => {
               if (data.isTooltipActive) {
@@ -138,16 +135,23 @@ const OverviewChart = () => {
               axisLine={false}
               tickLine={false}
             />
-            <YAxis axisLine={false} />
+            <YAxis axisLine={false} tickLine={false} />
             <Tooltip
-              content={
-                <span className="text-[14px] bg-none">{percentage}</span>
-              }
+              content={<span className="text-[14px]">{percentage}</span>}
               cursor={{
-                strokeWidth: breakpoint === 'xs' ? 30 : 40,
+                strokeWidth: breakpoint === 'xs' ? 30 : 50,
+
                 stroke: '#1f1f1f',
               }}
+              wrapperStyle={{
+                boxShadow: '0 0 1px 0px 4px 50px rgba(73, 93, 112, 0.08)',
+              }}
             />
+            {/* <CartesianGrid
+              vertical={false}
+              strokeDasharray="10 5"
+              stroke="#374151"
+            /> */}
             <Area
               dataKey="uv"
               type="monotone"
