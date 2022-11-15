@@ -17,6 +17,16 @@ module.exports = {
       '8xl': ['6rem', { lineHeight: '1' }],
       '9xl': ['8rem', { lineHeight: '1' }],
     },
+    screens: {
+      xs: '500px',
+      sm: '640px',
+      md: '768px',
+      lg: '1024px',
+      xl: '1280px',
+      '2xl': '1440px',
+      '3xl': '1780px',
+      '4xl': '2160px',
+    },
     extend: {
       colors: {
         brand: {
@@ -27,6 +37,9 @@ module.exports = {
       },
       borderColor: {
         DEFAULT: '#464646',
+      },
+      boxShadow: {
+        large: '0px 8px 16px rgba(17, 24, 39, 0.1)',
       },
     },
   },
