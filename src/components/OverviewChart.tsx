@@ -18,9 +18,22 @@ import {
 import { chartData as fakeData } from '@/data/mockData';
 import { useBreakpoint } from '@/lib/hooks/use-breakpoint';
 
-function CustomAxis({ x, y, payload }: any) {
+function CustomYAxis({ y, dy, payload }: any) {
   return (
-    <g transform={`translate(${x},${y})`} className="text-sm text-zinc-600">
+    <g
+      transform={`translate(${30},${y})`}
+      className="text-[12px] text-zinc-600"
+    >
+      <text x={0} y={0} dy={dy} textAnchor="middle" fill="currentColor">
+        {payload.value}
+      </text>
+    </g>
+  );
+}
+
+function CustomXAxis({ x, y, payload }: any) {
+  return (
+    <g transform={`translate(${x},${y})`} className="text-[12px] text-zinc-600">
       <text x={0} y={0} dy={25} textAnchor="middle" fill="currentColor">
         {payload.value}
       </text>
@@ -83,12 +96,15 @@ const OverviewChart = () => {
 
   return (
     <div className="dashboardCard p-4">
-      <div className="flex flex-col lg:flex-row justify-between items-center space-y-3 lg:space-y-0">
+      <div className="flex flex-col xl:flex-row justify-between items-center space-y-3 xl:space-y-0">
         <div className="flex flex-col text-center lg:text-left">
           <span className="mb-2 font-medium">
             Average time spent by users per day
           </span>
-          <time dateTime={formattedDate} className="text-xs text-zinc-400">
+          <time
+            dateTime={formattedDate}
+            className="text-center xl:text-left text-xs text-zinc-400"
+          >
             {formattedDate}
           </time>
         </div>
@@ -104,7 +120,7 @@ const OverviewChart = () => {
       </div>
 
       {/* chart */}
-      <div className="mt-5 h-56 sm:mt-8 md:h-96 lg:h-[380px] xl:h-[402px] 2xl:h-[30rem] 3xl:h-[496px] 4xl:h-[580px]">
+      <div className="mt-5 h-56 sm:mt-8  md:h-96 lg:h-[380px] xl:h-[402px]">
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart
             data={chartData}
@@ -131,16 +147,15 @@ const OverviewChart = () => {
 
             <XAxis
               dataKey="name"
-              tick={<CustomAxis />}
+              tick={<CustomXAxis />}
               axisLine={false}
               tickLine={false}
             />
-            <YAxis axisLine={false} tickLine={false} />
+            <YAxis tick={<CustomYAxis />} axisLine={false} tickLine={false} />
             <Tooltip
               content={<span className="text-[14px]">{percentage}</span>}
               cursor={{
                 strokeWidth: breakpoint === 'xs' ? 30 : 50,
-
                 stroke: '#1f1f1f',
               }}
               wrapperStyle={{
@@ -161,7 +176,7 @@ const OverviewChart = () => {
               activeDot={{
                 stroke: '#fff',
                 strokeWidth: breakpoint === 'xs' ? 2 : 5,
-                r: breakpoint === 'xs' ? 5 : 10,
+                r: breakpoint === 'xs' ? 5 : 7,
               }}
             />
           </AreaChart>
