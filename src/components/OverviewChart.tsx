@@ -6,14 +6,17 @@ import { RadioGroup } from '@headlessui/react';
 import { format } from 'date-fns';
 import { motion } from 'framer-motion';
 import React, { useState } from 'react';
-import { Area, AreaChart, ResponsiveContainer, Tooltip, XAxis } from 'recharts';
-
-import { useBreakpoint } from '@/app/lib/hooks/use-breakpoint';
 import {
-  monthlyComparison,
-  weeklyComparison,
-  yearlyComparison,
-} from '@/data/priceHistory';
+  Area,
+  AreaChart,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from 'recharts';
+
+import { chartData as fakeData } from '@/data/mockData';
+import { useBreakpoint } from '@/lib/hooks/use-breakpoint';
 
 function CustomAxis({ x, y, payload }: any) {
   return (
@@ -56,29 +59,27 @@ function RadioGroupOption({ value }: RadioOptionProps) {
 
 const OverviewChart = () => {
   const breakpoint = useBreakpoint();
-  const [chartData, setChartData] = useState(yearlyComparison);
-  const [status, setStatus] = useState('Year');
-  const [price, setPrice] = useState(6.2);
   const [date, setDate] = useState(1624147200);
-  const [priceDiff, setPriceDiff] = useState(-1.107);
-  const [percentage, setPercentage] = useState('2.22%');
-
+  const [chartData, setChartData] = useState(fakeData);
+  const [status, setStatus] = useState('Year');
   const formattedDate = format(new Date(date * 1000), 'MMMM d, yyyy hh:mma');
+
+  const [percentage, setPercentage] = useState('2.22%');
 
   const handleOnChange = (value: string) => {
     setStatus(value);
     switch (value) {
       case 'Week':
-        setChartData(weeklyComparison);
+        setChartData(fakeData);
         break;
       case 'Month':
-        setChartData(monthlyComparison);
+        setChartData(fakeData);
         break;
       case 'Year':
-        setChartData(yearlyComparison);
+        setChartData(fakeData);
         break;
       default:
-        setChartData(yearlyComparison);
+        setChartData(fakeData);
         break;
     }
   };
@@ -110,46 +111,34 @@ const OverviewChart = () => {
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart
             data={chartData}
+            width={500}
+            height={400}
             margin={{
               top: 20,
               bottom: 5,
             }}
             onMouseMove={(data) => {
               if (data.isTooltipActive) {
-                setDate(
-                  data.activePayload && data.activePayload[0].payload.date
-                );
-                setPrice(
-                  data.activePayload && data.activePayload[0].payload.btc
-                );
-                setPriceDiff(
-                  data.activePayload && data.activePayload[0].payload.diff
-                );
                 setPercentage(
-                  data.activePayload && data.activePayload[0].payload.percentage
+                  data.activePayload && data.activePayload[0].payload.uv
                 );
               }
             }}
           >
             <defs>
-              <linearGradient
-                id="liquidity-gradient"
-                x1="0"
-                y1="0"
-                x2="0"
-                y2="1"
-              >
+              <linearGradient id="fetcch-gradient" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="5%" stopColor="#FF5D46" stopOpacity={0.3} />
                 <stop offset="100%" stopColor="#D9D9D900" stopOpacity={0} />
               </linearGradient>
             </defs>
+
             <XAxis
               dataKey="name"
               tick={<CustomAxis />}
               axisLine={false}
               tickLine={false}
             />
-
+            <YAxis axisLine={false} />
             <Tooltip
               content={
                 <span className="text-[14px] bg-none">{percentage}</span>
@@ -160,11 +149,11 @@ const OverviewChart = () => {
               }}
             />
             <Area
+              dataKey="uv"
               type="monotone"
-              dataKey="btc"
               stroke="#FFFFFF"
               strokeWidth={breakpoint === 'xs' ? 2 : 3}
-              fill="url(#liquidity-gradient)"
+              fill="url(#fetcch-gradient)"
               activeDot={{
                 stroke: '#fff',
                 strokeWidth: breakpoint === 'xs' ? 2 : 5,
