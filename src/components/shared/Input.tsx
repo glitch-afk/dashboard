@@ -1,4 +1,6 @@
-import React from 'react';
+'use client';
+
+import React, { useState } from 'react';
 
 interface InputProps {
   type: string;
@@ -20,6 +22,8 @@ const Input = ({
   label,
   ...props
 }: InputProps) => {
+  const [file, setFile] = useState(placeholder);
+
   return (
     <div>
       {label && (
@@ -28,15 +32,35 @@ const Input = ({
         </label>
       )}
       <div className="mt-1">
-        <input
-          type={type}
-          name={name}
-          className={`customBorder p-2 rounded-md focus:outline-none block w-full bg-transparent text-sm ${classes}`}
-          placeholder={placeholder}
-          aria-describedby={`${name}-description`}
-          disabled={disabled}
-          {...props}
-        />
+        {type === 'file' ? (
+          <div className="border p-2 rounded-md focus:outline-none block w-full bg-transparent text-sm">
+            <div className="flex text-sm text-gray-600">
+              <label
+                htmlFor="file-upload"
+                className="rounded-full relative cursor-pointer bg-transparent font-medium text-zinc-500 focus-within:outline-none border border-zinc-500 border-dashed px-2"
+              >
+                <span className="truncate">{file}</span>
+                <input
+                  name={name}
+                  type="file"
+                  className="sr-only"
+                  // @ts-ignore
+                  onChange={(e) => setFile(e.target.files[0].name)}
+                />
+              </label>
+            </div>
+          </div>
+        ) : (
+          <input
+            type={type}
+            name={name}
+            className={`customBorder p-2 rounded-md focus:outline-none block w-full bg-transparent text-sm ${classes}`}
+            placeholder={placeholder}
+            aria-describedby={`${name}-description`}
+            disabled={disabled}
+            {...props}
+          />
+        )}
       </div>
       {validationMsg && (
         <p className="mt-2 text-sm text-gray-500">

@@ -28,18 +28,18 @@ const nftDetails = () => {
           <div className="sm:col-span-3">
             <Input
               name="collectionSymbol"
-              type="text"
+              type="file"
               label="Collection Symbol"
-              placeholder="Upload Image"
+              placeholder="Upload Symbol"
             />
           </div>
 
           <div className="sm:col-span-3">
             <Input
               name="collectionLogo"
-              type="text"
+              type="file"
               label="Collection Logo"
-              placeholder="Upload Image"
+              placeholder="Upload Logo"
             />
           </div>
 
@@ -54,7 +54,7 @@ const nftDetails = () => {
           <div className="sm:col-span-3">
             <Input
               name="nftImage"
-              type="text"
+              type="file"
               label="NFT Image"
               placeholder="Upload NFT image"
             />

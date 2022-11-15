@@ -14,6 +14,7 @@ const userDetails = () => {
           Please fill in the following details
         </p>
       </div>
+
       <div className="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
         <div className="sm:col-span-3">
           <Input
@@ -45,9 +46,9 @@ const userDetails = () => {
         <div className="sm:col-span-3">
           <Input
             name="image"
-            type="text"
-            label="Upload Image"
             placeholder="Upload Image"
+            type="file"
+            label="Upload Image"
           />
         </div>
 
