@@ -23,7 +23,9 @@ const buttonStyles = cva(
   }
 );
 
-export interface ButtonProps extends VariantProps<typeof buttonStyles> {
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof buttonStyles> {
   children: React.ReactNode;
 }
 

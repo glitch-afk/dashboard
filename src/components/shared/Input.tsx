@@ -2,73 +2,73 @@
 
 import React, { useState } from 'react';
 
-interface InputProps {
-  type: string;
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  type: 'text' | 'file' | 'email';
   name: string;
-  placeholder?: string;
+  placeholder: string;
   disabled?: boolean | false;
-  validationMsg?: Boolean | false;
-  classes?: string;
-  label?: string;
 }
 
-const Input = ({
-  type,
-  name,
-  placeholder,
-  disabled,
-  validationMsg,
-  classes,
-  label,
-  ...props
-}: InputProps) => {
-  const [file, setFile] = useState(placeholder);
+interface InputWithLabelProps extends InputProps {
+  label: string;
+}
 
+const Input = ({ type, name, placeholder, disabled }: InputProps) => {
+  const [selectedFile, setSelectedFile] = useState<File>();
   return (
-    <div>
-      {label && (
-        <label htmlFor={name} className="block text-xs font-medium">
-          {label}
-        </label>
-      )}
-      <div className="mt-1">
-        {type === 'file' ? (
-          <div className="border p-2 rounded-md focus:outline-none block w-full bg-transparent text-sm">
+    <>
+      {type === 'file' ? (
+        <div className="border rounded-md p-2">
+          <div className="border border-dashed px-2 rounded-full w-fit">
             <div className="flex text-sm text-gray-600">
-              <label
-                htmlFor="file-upload"
-                className="rounded-full relative cursor-pointer bg-transparent font-medium text-zinc-500 focus-within:outline-none border border-zinc-500 border-dashed px-2"
-              >
-                <span className="truncate">{file}</span>
+              <label className="relative cursor-pointer rounded-md bg-transparent font-medium text-zinc-500 focus-within:outline-none">
+                <span className="text-xs">
+                  {selectedFile?.name || placeholder}
+                </span>
                 <input
                   name={name}
                   type="file"
-                  className="sr-only"
+                  className="absolute sr-only left-0 w-full rounded-full text-red-500"
                   // @ts-ignore
-                  onChange={(e) => setFile(e.target.files[0].name)}
+                  onChange={(e) => setSelectedFile(e.target.files[0])}
                 />
               </label>
             </div>
           </div>
-        ) : (
-          <input
-            type={type}
-            name={name}
-            className={`customBorder p-2 rounded-md focus:outline-none block w-full bg-transparent text-sm ${classes}`}
-            placeholder={placeholder}
-            aria-describedby={`${name}-description`}
-            disabled={disabled}
-            {...props}
-          />
-        )}
-      </div>
-      {validationMsg && (
-        <p className="mt-2 text-sm text-gray-500">
-          use this to display validation messages.
-        </p>
+        </div>
+      ) : (
+        <input
+          type={type}
+          name={name}
+          placeholder={placeholder}
+          className={`customBorder p-2 rounded-md focus:outline-none block w-full bg-transparent text-sm`}
+          disabled={disabled}
+        />
       )}
-    </div>
+    </>
   );
 };
 
 export default Input;
+
+export const InputWithLabel = ({
+  label,
+  name,
+  type,
+  placeholder,
+  disabled,
+}: InputWithLabelProps) => {
+  return (
+    <div>
+      <label htmlFor={name} className="block text-xs font-medium mb-1">
+        {label}
+      </label>
+      <Input
+        type={type}
+        name={name}
+        placeholder={placeholder}
+        disabled={disabled}
+      />
+    </div>
+  );
+};

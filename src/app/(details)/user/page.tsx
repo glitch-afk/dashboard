@@ -2,7 +2,7 @@ import React from 'react';
 
 import Button from '@/components/shared/Button';
 import CustomSelect from '@/components/shared/CustomSelect';
-import Input from '@/components/shared/Input';
+import { InputWithLabel } from '@/components/shared/Input';
 import { delimiters, ownersChains } from '@/data/mockData';
 
 const userDetails = () => {
@@ -17,7 +17,7 @@ const userDetails = () => {
 
       <div className="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
         <div className="sm:col-span-3">
-          <Input
+          <InputWithLabel
             name="name"
             type="text"
             label="Name"
@@ -26,7 +26,7 @@ const userDetails = () => {
         </div>
 
         <div className="sm:col-span-3">
-          <Input
+          <InputWithLabel
             name="email"
             type="email"
             label="Email"
@@ -35,7 +35,7 @@ const userDetails = () => {
         </div>
 
         <div className="sm:col-span-3">
-          <Input
+          <InputWithLabel
             name="color"
             type="text"
             label="Brand Color"
@@ -44,7 +44,7 @@ const userDetails = () => {
         </div>
 
         <div className="sm:col-span-3">
-          <Input
+          <InputWithLabel
             name="image"
             placeholder="Upload Image"
             type="file"
@@ -66,7 +66,7 @@ const userDetails = () => {
         </div>
 
         <div className="sm:col-span-3">
-          <Input
+          <InputWithLabel
             name="namespace"
             type="text"
             label="Namespace Id"
@@ -83,7 +83,7 @@ const userDetails = () => {
         </div>
 
         <div className="sm:col-span-3">
-          <Input
+          <InputWithLabel
             name="address"
             type="text"
             label="Owners Wallet Address"

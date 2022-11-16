@@ -2,7 +2,7 @@ import React from 'react';
 
 import Button from '@/components/shared/Button';
 import CustomSelect from '@/components/shared/CustomSelect';
-import Input from '@/components/shared/Input';
+import { InputWithLabel } from '@/components/shared/Input';
 import { gasOptions, ownersChains } from '@/data/mockData';
 
 const nftDetails = () => {
@@ -17,7 +17,7 @@ const nftDetails = () => {
         </div>
         <div className="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
           <div className="sm:col-span-3">
-            <Input
+            <InputWithLabel
               name="collectionName"
               type="text"
               label="Collection Name"
@@ -26,7 +26,7 @@ const nftDetails = () => {
           </div>
 
           <div className="sm:col-span-3">
-            <Input
+            <InputWithLabel
               name="collectionSymbol"
               type="file"
               label="Collection Symbol"
@@ -35,7 +35,7 @@ const nftDetails = () => {
           </div>
 
           <div className="sm:col-span-3">
-            <Input
+            <InputWithLabel
               name="collectionLogo"
               type="file"
               label="Collection Logo"
@@ -52,7 +52,7 @@ const nftDetails = () => {
           </div>
 
           <div className="sm:col-span-3">
-            <Input
+            <InputWithLabel
               name="nftImage"
               type="file"
               label="NFT Image"
@@ -60,7 +60,7 @@ const nftDetails = () => {
             />
           </div>
           <div className="sm:col-span-3">
-            <Input
+            <InputWithLabel
               name="nftName"
               type="text"
               label="NFT Name"
