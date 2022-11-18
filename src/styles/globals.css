@@ -1,3 +1,35 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html, body {
+    @apply bg-body text-white antialiased
+  }
+}
+
+@layer utilities {
+.animation-delay-200 {
+    animation-delay: 200ms;
+  }
+  .animation-delay-500 {
+    animation-delay: 500ms;
+  }
+  .animation-delay-700 {
+    animation-delay: 700ms;
+  }
+}
+
+@layer components {
+  .formShadow {
+      background: #101010;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), inset 1px 1px 1px rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+  }
+
+  .dashboardCard {
+    background: linear-gradient(102.86deg, #101010 0.8%, rgba(16, 16, 16, 0) 99.06%);
+    box-shadow: inset -1px -1px 1px rgba(128, 128, 128, 0.1);
+    border-radius: 12px;
+  }
+}
