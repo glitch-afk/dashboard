@@ -11,7 +11,7 @@ const AuthIndex: NextPageWithLayout = () => {
       <Input
         label="Enter email to continue"
         type="email"
-        inputClassName="border bg-transparent"
+        placeholder="Enter email"
         labelClassName="text-xl font-bold"
         required
       />
