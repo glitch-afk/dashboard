@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Button from '@/components/ui/button';
 import Input from '@/components/ui/form/input';
@@ -6,10 +6,26 @@ import AuthLayout from '@/layouts/_authLayout';
 import type { NextPageWithLayout } from '@/types';
 import { Magic } from 'magic-sdk';
 import router, {useRouter} from "next/router"
+import { useSession } from '@/context/authContext';
+import fi from 'date-fns/esm/locale/fi/index.js';
+
+
+
 
 const AuthIndex: NextPageWithLayout = () => {
   const [email, setEmail] = useState('')
   const router = useRouter()
+  const {session, currentLink} = useSession()
+
+  useEffect(() => {
+    if(session) {
+      console.log(session)
+      if(session.isLoggedIn == true) {
+          router.push("/dashboard")
+      }
+    }
+  }, [session])
+
   const onSubmit = async (email: string) => {
     const magic = new Magic("pk_live_2E72FB05C25C02B3");
     const didToken = await magic.auth.loginWithMagicLink({ email });

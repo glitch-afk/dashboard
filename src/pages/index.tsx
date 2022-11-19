@@ -1,7 +1,10 @@
+import { useSession } from '@/context/authContext';
 import Link from 'next/link';
-import React from 'react';
+import router, { useRouter } from 'next/router';
+import React, { useEffect } from 'react';
 
 const index = () => {
+
   return (
     <div className="flex flex-col space-y-4">
       <Link className="underline" href="/dashboard">

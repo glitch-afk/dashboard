@@ -6,6 +6,7 @@ import { Inter } from '@next/font/google';
 import type { AppProps } from 'next/app';
 
 import type { NextPageWithLayout } from '@/types';
+import { SessionProvider } from '@/context/authContext';
 
 const inter = Inter({
   weight: ['300', '400', '600', '700', '800'],
@@ -19,8 +20,11 @@ type AppPropsWithLayout = AppProps & {
 export default function App({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? ((page) => page);
   return (
+    <SessionProvider>
     <main className={inter.className}>
       {getLayout(<Component {...pageProps} />)}
     </main>
+    </SessionProvider>
+
   );
 }

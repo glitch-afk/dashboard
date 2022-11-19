@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import OverviewChart from '@/components/OverviewChart';
 import TransactionTable from '@/components/transaction-table';
@@ -7,8 +7,15 @@ import Layout from '@/layouts/_dashboard';
 import type { NextPageWithLayout } from '@/types';
 
 import { COLUMNS } from './transactions';
+import router from 'next/router';
+import { useSession } from '@/context/authContext';
+import { useRouter } from 'next/navigation';
 
 const DashboardIndex: NextPageWithLayout = () => {
+  const {session, currentLink, setCurrentLink} = useSession()
+  const nvavigate = useRouter()
+
+
   return (
     <>
       <h1 className="mb-4 text-2xl font-semibold text-gray-200">Overview</h1>
