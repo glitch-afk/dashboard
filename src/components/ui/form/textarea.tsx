@@ -18,9 +18,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
         {label && (
           <span className="mb-2 block font-medium uppercase tracking-widest dark:text-gray-100 sm:mb-3">
             {label}
-            <sup className="inline-block text-[13px] text-red-500 ltr:ml-1 rtl:mr-1">
-              *
-            </sup>
+            <sup className="ml-1 inline-block text-[13px] text-red-500">*</sup>
           </span>
         )}
         <textarea

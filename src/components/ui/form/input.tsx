@@ -42,7 +42,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
               {label}
 
               {props.required && (
-                <sup className="inline-block text-[13px] text-brand-amber ltr:ml-1 rtl:mr-1">
+                <sup className="ml-1 inline-block text-[13px] text-brand-amber">
                   *
                 </sup>
               )}
@@ -59,7 +59,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
                     <input
                       name={props.name}
                       type="file"
-                      className="sr-only absolute left-0 w-full rounded-full text-red-500"
+                      className="sr-only absolute left-0 w-full rounded-full"
                       // @ts-ignore
                       onChange={(e) => setSelectedFile(e.target.files[0])}
                     />

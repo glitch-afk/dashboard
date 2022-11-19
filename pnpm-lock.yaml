@@ -9,8 +9,10 @@ specifiers:
   '@next/font': ^13.0.2
   '@tailwindcss/forms': ^0.5.3
   '@types/node': 18.11.9
+  '@types/overlayscrollbars': ^1.12.1
   '@types/react': 18.0.25
   '@types/react-dom': 18.0.9
+  '@types/react-table': ^7.7.12
   '@typescript-eslint/eslint-plugin': ^5.42.0
   '@typescript-eslint/parser': ^5.42.0
   autoprefixer: ^10.4.13
@@ -34,10 +36,13 @@ specifiers:
   lint-staged: ^13.0.3
   next: 13.0.3
   next-pwa: ^5.6.0
+  overlayscrollbars: ^2.0.1
+  overlayscrollbars-react: ^0.5.0
   postcss: ^8.4.19
   prettier: ^2.7.1
   react: 18.2.0
   react-dom: 18.2.0
+  react-table: ^7.8.0
   react-use: ^17.4.0
   recharts: ^2.1.16
   rimraf: ^3.0.2
@@ -47,15 +52,18 @@ specifiers:
 dependencies:
   '@headlessui/react': 1.7.4_biqbaboplfbrettd7655fr4n2y
   '@heroicons/react': 2.0.13_react@18.2.0
-  '@next/font': 13.0.3
+  '@next/font': 13.0.4
   '@tailwindcss/forms': 0.5.3_tailwindcss@3.2.4
   classnames: 2.3.2
   date-fns: 2.29.3
   framer-motion: 7.6.7_biqbaboplfbrettd7655fr4n2y
   next: 13.0.3_mqvh5p7ejg4taogoj6tpk3gd5a
   next-pwa: 5.6.0_kbq3kkaszgzujpvtngxdrmfqsi
+  overlayscrollbars: 2.0.1
+  overlayscrollbars-react: 0.5.0_mwyyxktpzjzbljbc25pjt2gnlu
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
+  react-table: 7.8.0_react@18.2.0
   react-use: 17.4.0_biqbaboplfbrettd7655fr4n2y
   recharts: 2.1.16_v2m5e27vhdewzwhryxwfaorcca
 
@@ -64,8 +72,10 @@ devDependencies:
   '@commitlint/config-conventional': 17.2.0
   '@commitlint/cz-commitlint': 17.2.0_zf2cl32i2oyeyuxbu5zihobrqa
   '@types/node': 18.11.9
+  '@types/overlayscrollbars': 1.12.1
   '@types/react': 18.0.25
   '@types/react-dom': 18.0.9
+  '@types/react-table': 7.7.12
   '@typescript-eslint/eslint-plugin': 5.43.0_wze2rj5tow7zwqpgbdx2buoy3m
   '@typescript-eslint/parser': 5.43.0_e3uo4sehh4zr4i6m57mkkxxv7y
   autoprefixer: 10.4.13_postcss@8.4.19
@@ -77,7 +87,7 @@ devDependencies:
   eslint-config-prettier: 8.5.0_eslint@8.27.0
   eslint-plugin-import: 2.26.0_wbsj7pk5g7hogwvhsif6xntns4
   eslint-plugin-prettier: 4.2.1_v7o5sx5x3wbs57ifz6wc4f76we
-  eslint-plugin-react: 7.31.10_eslint@8.27.0
+  eslint-plugin-react: 7.31.11_eslint@8.27.0
   eslint-plugin-react-hooks: 4.6.0_eslint@8.27.0
   eslint-plugin-simple-import-sort: 8.0.0_eslint@8.27.0
   eslint-plugin-tailwindcss: 3.7.0_ts-node@10.9.1
@@ -1566,7 +1576,7 @@ packages:
       '@motionone/easing': 10.14.0
       '@motionone/types': 10.14.0
       '@motionone/utils': 10.14.0
-      tslib: 2.4.1
+      tslib: 2.4.0
     dev: false
 
   /@motionone/dom/10.13.1:
@@ -1577,14 +1587,14 @@ packages:
       '@motionone/types': 10.14.0
       '@motionone/utils': 10.14.0
       hey-listen: 1.0.8
-      tslib: 2.4.1
+      tslib: 2.4.0
     dev: false
 
   /@motionone/easing/10.14.0:
     resolution: {integrity: sha512-2vUBdH9uWTlRbuErhcsMmt1jvMTTqvGmn9fHq8FleFDXBlHFs5jZzHJT9iw+4kR1h6a4SZQuCf72b9ji92qNYA==}
     dependencies:
       '@motionone/utils': 10.14.0
-      tslib: 2.4.1
+      tslib: 2.4.0
     dev: false
 
   /@motionone/generators/10.14.0:
@@ -1592,7 +1602,7 @@ packages:
     dependencies:
       '@motionone/types': 10.14.0
       '@motionone/utils': 10.14.0
-      tslib: 2.4.1
+      tslib: 2.4.0
     dev: false
 
   /@motionone/types/10.14.0:
@@ -1604,7 +1614,7 @@ packages:
     dependencies:
       '@motionone/types': 10.14.0
       hey-listen: 1.0.8
-      tslib: 2.4.1
+      tslib: 2.4.0
     dev: false
 
   /@next/env/13.0.3:
@@ -1617,8 +1627,8 @@ packages:
       glob: 7.1.7
     dev: true
 
-  /@next/font/13.0.3:
-    resolution: {integrity: sha512-J3bZooNyhzhRshEJZlc4Kagfx6f8LQkPdCsP0nZm63dAUaoeMaQRidFFhbL68WZ3S5XleVfpGYypZuBSyJqYtw==}
+  /@next/font/13.0.4:
+    resolution: {integrity: sha512-csZhVqe870p7XE03WfbDLzjVwdBAWxe6/lWGQosfqY/XN5tsmfDLpj442veicfCiiuF7/ydSnAAJxH8PQVBVWQ==}
     dev: false
 
   /@next/swc-android-arm-eabi/13.0.3:
@@ -1939,6 +1949,10 @@ packages:
     resolution: {integrity: sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==}
     dev: true
 
+  /@types/overlayscrollbars/1.12.1:
+    resolution: {integrity: sha512-V25YHbSoKQN35UasHf0EKD9U2vcmexRSp78qa8UglxFH8H3D+adEa9zGZwrqpH4TdvqeMrgMqVqsLB4woAryrQ==}
+    dev: true
+
   /@types/parse-json/4.0.0:
     resolution: {integrity: sha512-//oorEZjL6sbPcKUaCdIGlIUeH26mgzimjBB77G6XRgnDl/L5wOnpyBGRe/Mmf5CVW3PwEBE1NjiMZ/ssFh4wA==}
     dev: true
@@ -1949,6 +1963,12 @@ packages:
 
   /@types/react-dom/18.0.9:
     resolution: {integrity: sha512-qnVvHxASt/H7i+XG1U1xMiY5t+IHcPGUK7TDMDzom08xa7e86eCeKOiLZezwCKVxJn6NEiiy2ekgX8aQssjIKg==}
+    dependencies:
+      '@types/react': 18.0.25
+    dev: true
+
+  /@types/react-table/7.7.12:
+    resolution: {integrity: sha512-bRUent+NR/WwtDGwI/BqhZ8XnHghwHw0HUKeohzB5xN3K2qKWYE5w19e7GCuOkL1CXD9Gi1HFy7TIm2AvgWUHg==}
     dependencies:
       '@types/react': 18.0.25
     dev: true
@@ -2415,6 +2435,16 @@ packages:
       define-properties: 1.1.4
       es-abstract: 1.20.4
       es-shim-unscopables: 1.0.0
+    dev: true
+
+  /array.prototype.tosorted/1.1.1:
+    resolution: {integrity: sha512-pZYPXPRl2PqWcsUs6LOMn+1f1532nEoPTYowBtqLwAW+W8vSVhkIGnmOX1t/UQjD6YGI0vcD2B1U7ZFGQH9jnQ==}
+    dependencies:
+      call-bind: 1.0.2
+      define-properties: 1.1.4
+      es-abstract: 1.20.4
+      es-shim-unscopables: 1.0.0
+      get-intrinsic: 1.1.3
     dev: true
 
   /arrify/1.0.1:
@@ -3320,7 +3350,7 @@ packages:
       eslint-import-resolver-typescript: 2.7.1_dcpv4nbdr5ks2h5677xdltrk6e
       eslint-plugin-import: 2.26.0_ttnp75sbivpcvanbhjbkcsh3ly
       eslint-plugin-jsx-a11y: 6.6.1_eslint@8.27.0
-      eslint-plugin-react: 7.31.10_eslint@8.27.0
+      eslint-plugin-react: 7.31.11_eslint@8.27.0
       eslint-plugin-react-hooks: 4.6.0_eslint@8.27.0
       typescript: 4.9.3
     transitivePeerDependencies:
@@ -3533,14 +3563,15 @@ packages:
       eslint: 8.27.0
     dev: true
 
-  /eslint-plugin-react/7.31.10_eslint@8.27.0:
-    resolution: {integrity: sha512-e4N/nc6AAlg4UKW/mXeYWd3R++qUano5/o+t+wnWxIf+bLsOaH3a4q74kX3nDjYym3VBN4HyO9nEn1GcAqgQOA==}
+  /eslint-plugin-react/7.31.11_eslint@8.27.0:
+    resolution: {integrity: sha512-TTvq5JsT5v56wPa9OYHzsrOlHzKZKjV+aLgS+55NJP/cuzdiQPC7PfYoUjMoxlffKtvijpk7vA/jmuqRb9nohw==}
     engines: {node: '>=4'}
     peerDependencies:
       eslint: ^3 || ^4 || ^5 || ^6 || ^7 || ^8
     dependencies:
       array-includes: 3.1.6
       array.prototype.flatmap: 1.3.1
+      array.prototype.tosorted: 1.1.1
       doctrine: 2.1.0
       eslint: 8.27.0
       estraverse: 5.3.0
@@ -5171,6 +5202,20 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
+  /overlayscrollbars-react/0.5.0_mwyyxktpzjzbljbc25pjt2gnlu:
+    resolution: {integrity: sha512-uCNTnkfWW74veoiEv3kSwoLelKt4e8gTNv65D771X3il0x5g5Yo0fUbro7SpQzR9yNgi23cvB2mQHTTdQH96pA==}
+    peerDependencies:
+      overlayscrollbars: ^2.0.0
+      react: '>=16.8.0'
+    dependencies:
+      overlayscrollbars: 2.0.1
+      react: 18.2.0
+    dev: false
+
+  /overlayscrollbars/2.0.1:
+    resolution: {integrity: sha512-tER9iKasFqcJiYdtspHbzlhJJg8kicyj/Oag/GRAK658rDouat2BGFfSFg3AgIw/Yc9CQ78AuX6ieHgg1wQw7Q==}
+    dev: false
+
   /p-limit/2.3.0:
     resolution: {integrity: sha512-//88mFWSJx8lxCzwdAABTJL2MyWB12+eIY7MDL2SqLmAkeKU9qxRvWuSyTjm3FUmpBEMuFfckAIqEaVGUDxb6w==}
     engines: {node: '>=6'}
@@ -5488,6 +5533,14 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-transition-group: 2.9.0_biqbaboplfbrettd7655fr4n2y
+    dev: false
+
+  /react-table/7.8.0_react@18.2.0:
+    resolution: {integrity: sha512-hNaz4ygkZO4bESeFfnfOft73iBUj8K5oKi1EcSHPAibEydfsX2MyU6Z8KCr3mv3C9Kqqh71U+DhZkFvibbnPbA==}
+    peerDependencies:
+      react: ^16.8.3 || ^17.0.0-0 || ^18.0.0
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /react-transition-group/2.9.0_biqbaboplfbrettd7655fr4n2y:

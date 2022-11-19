@@ -33,3 +33,11 @@
     border-radius: 12px;
   }
 }
+
+.transaction-table {
+  border-spacing: 0 12px;
+}
+
+.transaction-table > thead tr > th {
+  text-align: left;
+}

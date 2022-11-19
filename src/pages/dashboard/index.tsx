@@ -1,13 +1,17 @@
 import React from 'react';
 
 import OverviewChart from '@/components/OverviewChart';
+import TransactionTable from '@/components/transaction-table';
+import { transactionsData } from '@/data/transactions-data';
 import Layout from '@/layouts/_dashboard';
 import type { NextPageWithLayout } from '@/types';
+
+import { COLUMNS } from './transactions';
 
 const DashboardIndex: NextPageWithLayout = () => {
   return (
     <>
-      <h1 className="text-2xl font-semibold text-gray-200">Overview</h1>
+      <h1 className="mb-4 text-2xl font-semibold text-gray-200">Overview</h1>
       <div className="mb-12 grid grid-cols-1 gap-4 sm:grid-cols-8">
         <div className="dashboardCard rounded-lg p-3 sm:col-span-4 lg:col-span-2">
           <span className="text-xs font-medium">Total no. of users</span>
@@ -30,10 +34,12 @@ const DashboardIndex: NextPageWithLayout = () => {
         </div>
       </div>
       {/* charts */}
-      <div className="grid w-full grid-cols-1 gap-4 lg:grid-cols-2">
+      <div className="mb-12 grid w-full grid-cols-1 gap-4 lg:grid-cols-2">
         <OverviewChart />
         <OverviewChart />
       </div>
+      {/* table */}
+      <TransactionTable tableColumns={COLUMNS} tableData={transactionsData} />
     </>
   );
 };

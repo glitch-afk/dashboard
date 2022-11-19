@@ -1,4 +1,6 @@
 import '@/styles/globals.css';
+import '@/styles/scrollbar.css';
+import 'overlayscrollbars/overlayscrollbars.css';
 
 import { Inter } from '@next/font/google';
 import type { AppProps } from 'next/app';
