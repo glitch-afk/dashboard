@@ -15,7 +15,7 @@ import React, {
 } from "react";
 
 interface Props {
-  children: ReactNode;
+  children: ReactNode; 
 }
 
 interface IContext {
