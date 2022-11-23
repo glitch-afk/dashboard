@@ -2,6 +2,7 @@ import Iron from '@hapi/iron';
 
 import { MAX_AGE, setTokenCookie } from './auth-cookie';
 
+// set this to .env
 export const TOKEN_SECRET = 'DnFpFgvUqyfmelX8P4KyS7ptQHMZjdp1';
 
 export const setLoginSession = async (res, metadata) => {
