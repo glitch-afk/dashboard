@@ -1,27 +1,18 @@
-import {
-  getUser,
-  ISession,
-} from "@/lib/authuttils/sessionInfo";
-import { url } from "inspector";
-import router, { useRouter } from "next/router";
-import React, {
-  createContext,
-  Dispatch,
-  ReactNode,
-  SetStateAction,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { useRouter } from 'next/router';
+import type { Dispatch, ReactNode, SetStateAction } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
+
+import type { ISession } from '@/lib/authuttils/sessionInfo';
+import { getUser } from '@/lib/authuttils/sessionInfo';
 
 interface Props {
-  children: ReactNode; 
+  children: ReactNode;
 }
 
 interface IContext {
-  session: ISession | null
-  currentLink: string
-  setCurrentLink: Dispatch<SetStateAction<string>>
+  session: ISession | null;
+  currentLink: string;
+  setCurrentLink: Dispatch<SetStateAction<string>>;
 }
 
 const context = createContext({} as IContext);
@@ -32,48 +23,45 @@ export const useSession = () => {
 
 export const SessionProvider = ({ children }: Props) => {
   const [session, setSession] = useState<ISession | null>(null);
-  const [currentLink, setCurrentLink] = useState("")
-  const router = useRouter()
+  const [currentLink, setCurrentLink] = useState('');
+  const router = useRouter();
   useEffect(() => {
     (async () => {
-      console.log("hi")
+      console.log('hi');
       const user: any = await getUser();
-      console.log(user)
-      if(user.user) {
-        console.log("hello", user)
-      setSession((prev: any) => {
-        return { ...prev, user: user?.user, isLoggedIn: user.user.email ? true: false };
-      });
-      }else {
-        router.push('/auth')
+      console.log(user);
+      if (user.user) {
+        console.log('hello', user);
+        setSession((prev: any) => {
+          return {
+            ...prev,
+            user: user?.user,
+            isLoggedIn: !!user.user.email,
+          };
+        });
+      } else {
+        router.push('/auth');
       }
-   })();
+    })();
   }, []);
 
-
-
   useEffect(() => {
-    if(session) {
-      console.log(session)
-      if(session.isLoggedIn == false) {
-          router.push("/auth")
+    if (session) {
+      console.log(session);
+      if (session.isLoggedIn === false) {
+        router.push('/auth');
       }
     }
-  }, [session])
+  }, [session]);
 
-
-  
-
-
-
-  const shared_value = {
-    session, 
+  const sharedValue = {
+    session,
     currentLink,
-    setCurrentLink
+    setCurrentLink,
   };
   return (
     <>
-      <context.Provider value={shared_value}>{children}</context.Provider>
+      <context.Provider value={sharedValue}>{children}</context.Provider>
     </>
   );
 };
