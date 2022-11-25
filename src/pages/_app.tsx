@@ -30,7 +30,7 @@ type AppPropsWithLayout = AppProps & {
 };
 
 const { chains, provider, webSocketProvider } = configureChains(defaultChains, [
-  alchemyProvider({ apiKey: 'yourAlchemyApiKey' }),
+  alchemyProvider({ apiKey: 'oVGJG4dXeo8s4WnAxp8KfcDmDbwai3JQ' }),
   publicProvider(),
 ]);
 

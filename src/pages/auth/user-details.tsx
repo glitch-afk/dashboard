@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Button from '@/components/ui/button';
 import Input from '@/components/ui/form/input';
@@ -7,6 +7,9 @@ import CustomSelect from '@/components/ui/Select';
 import { delimiters, ownersChains } from '@/data/mockData';
 import AuthLayout from '@/layouts/_authLayout';
 import type { NextPageWithLayout } from '@/types';
+import { useContractWrite, usePrepareContractWrite } from 'wagmi';
+import {abi} from '@/abi/FetcchRegistry'
+
 
 const UserDetails: NextPageWithLayout = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -16,6 +19,19 @@ const UserDetails: NextPageWithLayout = () => {
   const [file, setFile] = useState<any>(null);
   const [namespace, setNameSpace] = useState('');
   const [walletAddress, setWalletAdress] = useState('');
+  const contractAddress = "0x098f175dFBc63cF1c516248B66c4Eb6e543755D5"
+  const { config } = usePrepareContractWrite({
+    address: contractAddress,
+    abi: abi,
+    functionName: 'acquireNamespace',
+  })
+
+  const { data, isLoading, isSuccess, write } = useContractWrite(config)
+  useEffect(() => {
+    if (write) {
+      const res = write()
+    }
+  }, [config])
   return (
     <div className="formShadow w-full p-4">
       <div>
