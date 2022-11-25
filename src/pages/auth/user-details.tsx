@@ -24,13 +24,20 @@ const UserDetails: NextPageWithLayout = () => {
     address: contractAddress,
     abi: abi,
     functionName: 'acquireNamespace',
+    args: ["test", "0x3f6C3Bc1679731825d457541bD27C1d713698306", "logo", "metadata", 1]
   })
 
-  const { data, isLoading, isSuccess, write } = useContractWrite(config)
+  const { data, isLoading, isSuccess, write, writeAsync } = useContractWrite(config)
   useEffect(() => {
-    if (write) {
-      const res = write()
-    }
+    (async() => {
+      console.log(config)
+
+      const res = writeAsync && await writeAsync()
+      console.log("response",res)
+    }) ()
+    
+
+
   }, [config])
   return (
     <div className="formShadow w-full p-4">
