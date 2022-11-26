@@ -7,8 +7,9 @@ import CustomSelect from '@/components/ui/Select';
 import { delimiters, ownersChains } from '@/data/mockData';
 import AuthLayout from '@/layouts/_authLayout';
 import type { NextPageWithLayout } from '@/types';
-import { useContractWrite, usePrepareContractWrite } from 'wagmi';
+import { useAccount, useConnect, useContractWrite, usePrepareContractWrite } from 'wagmi';
 import {abi} from '@/abi/FetcchRegistry'
+import { InjectedConnector } from 'wagmi/connectors/injected'
 
 
 const UserDetails: NextPageWithLayout = () => {
@@ -18,27 +19,32 @@ const UserDetails: NextPageWithLayout = () => {
   const [description, setDescription] = useState('');
   const [file, setFile] = useState<any>(null);
   const [namespace, setNameSpace] = useState('');
-  const [walletAddress, setWalletAdress] = useState('');
+  const [walletAddress, setWalletAdress] = useState<any>('');
   const contractAddress = "0x098f175dFBc63cF1c516248B66c4Eb6e543755D5"
   const { config } = usePrepareContractWrite({
     address: contractAddress,
     abi: abi,
     functionName: 'acquireNamespace',
-    args: ["test", "0x3f6C3Bc1679731825d457541bD27C1d713698306", "logo", "metadata", 1]
+    args: [name, walletAddress, file, "metadata", "type"]
   })
 
   const { data, isLoading, isSuccess, write, writeAsync } = useContractWrite(config)
+  const { address, isConnected } = useAccount()
+  const { connect } = useConnect({
+    connector: new InjectedConnector(),
+  })
+
   useEffect(() => {
-    (async() => {
-      console.log(config)
-
-      const res = writeAsync && await writeAsync()
-      console.log("response",res)
-    }) ()
+    connect()
+  }, [])
+  useEffect(() => {
     
-
-
-  }, [config])
+    if (isConnected) {
+      setWalletAdress(() => {
+        return address?.toString();
+      })
+    }
+  }, [isConnected])
   return (
     <div className="formShadow w-full p-4">
       <div>
@@ -128,8 +134,10 @@ const UserDetails: NextPageWithLayout = () => {
         </div>
         <div className="sm:col-span-6">
           <Button
-            onClick={() => {
-              // here we do the request
+            onClick={async() => {
+              console.log(config)
+              const res = writeAsync && await writeAsync()
+              console.log("response",res)
             }}
             shape="rounded"
             variant="solid"
